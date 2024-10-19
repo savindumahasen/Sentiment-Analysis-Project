@@ -8,6 +8,8 @@ reviews = []
 positive=0
 negative=0
 
+print("======================================Flask Server Started====================================")
+
 @app.route("/")
 def index():
     data['reviews'] = reviews
@@ -18,9 +20,13 @@ def index():
 @app.route("/", methods=['post'])
 def my_post():
     text = request.form['text']
+    print(f'text :{text}')
     preprocessed_text = preprocessing(text);
+    print(f'preprcoessed_text: {preprocessed_text}')
     vectorized_text = vectorizer(preprocessed_text)
+    print(f'vectorized_text: {vectorized_text}')
     predictions = get_prediction(vectorized_text)
+    print(f'Predictions: {predictions}')
 
     if predictions =="Negative":
         global negative
